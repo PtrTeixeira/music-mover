@@ -1,6 +1,6 @@
 use audiotags::Tag;
 use clap::Parser;
-use std::fs::{self, DirEntry};
+use std::fs::{self};
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
