@@ -1,8 +1,8 @@
 use audiotags::Tag;
 use clap::Parser;
-use std::path::{PathBuf, Path};
-use std::fs::{self};
 use std::ffi::OsStr;
+use std::fs::{self};
+use std::path::{Path, PathBuf};
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
@@ -42,7 +42,7 @@ fn get_relative_path(source_details: SourceDetails) -> Box<Path> {
 
         dest.set_extension(ext);
     }
-   
+
     dest.into_boxed_path()
 }
 
@@ -68,7 +68,7 @@ fn main() {
             let album = tags.album_title();
             let title = tags.title();
             let track = tags.track_number();
-            let ext = source_path.extension(); 
+            let ext = source_path.extension();
 
             let source_details = SourceDetails {
                 artist,
@@ -82,7 +82,7 @@ fn main() {
             let relative_dest = get_relative_path(source_details);
             let dest = destination_path.join(relative_dest);
 
-            if let Some(dest_parent) = dest.parent() { 
+            if let Some(dest_parent) = dest.parent() {
                 let _ = fs::create_dir_all(dest_parent);
             }
 
